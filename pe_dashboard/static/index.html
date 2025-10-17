@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>P/E Ratio Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+    <script src="/static/app.js" type="module" defer></script>
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>Daily Price-to-Earnings Dashboard</h1>
+      <p>Select companies and visualize their price-to-earnings ratios over time.</p>
+    </header>
+
+    <main class="layout">
+      <section class="controls">
+        <form id="control-form">
+          <fieldset>
+            <legend>Companies</legend>
+            <div class="checkbox-grid" id="ticker-checkboxes"></div>
+          </fieldset>
+
+          <fieldset class="date-range">
+            <legend>Date Range</legend>
+            <label>
+              Start
+              <input type="date" id="start-date" />
+            </label>
+            <label>
+              End
+              <input type="date" id="end-date" />
+            </label>
+          </fieldset>
+
+          <fieldset class="mode">
+            <legend>Chart Mode</legend>
+            <label><input type="radio" name="mode" value="combined" checked /> Combined</label>
+            <label><input type="radio" name="mode" value="individual" /> Individual</label>
+          </fieldset>
+
+          <button type="submit">Update chart</button>
+        </form>
+      </section>
+
+      <section class="charts">
+        <div class="chart-container" id="combined-chart-container">
+          <canvas id="combined-chart" aria-label="Combined P/E chart" role="img"></canvas>
+        </div>
+        <div id="individual-charts" class="individual-grid"></div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>
+        Data provided by Yahoo Finance via <code>yfinance</code>. Trailing twelve month EPS values are interpolated between quarterly
+        earnings releases.
+      </p>
+    </footer>
+  </body>
+</html>
